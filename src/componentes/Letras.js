@@ -3,7 +3,7 @@ export default function Letras(props){
 
     return(
        <ul>
-        {alfabeto.map(alfabeto => <li><span>{alfabeto.toUpperCase()}</span></li>)}
+        {alfabeto.map(alfabeto => <li data-test="letter"><span>{alfabeto.toUpperCase()}</span></li>)}
        </ul>
     )
 }
