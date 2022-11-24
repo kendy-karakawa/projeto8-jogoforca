@@ -22,6 +22,7 @@ function App() {
   const [listaSelecionados, setListaSelecionados] = useState([]);
   const [letra, setLetra] = useState("");
   const [arrayResposta,setArrayResposta] = useState([])
+  const [arrayRenderizado,setArrayRenderizado] = useState([])
   console.log(arrayResposta)
 
   function addErro() {
@@ -36,6 +37,7 @@ function App() {
     let indice = Math.floor(Math.random() * palavras.length);
     setResposta(palavras[indice]);
     renderizar(palavras[indice]);
+    setArrayResposta(palavras[indice].split(''))
     
   }
 
@@ -44,13 +46,15 @@ function App() {
     for (let i = 0; i < palavra.length; i++) {
       array.push("_");
     }
-    setArrayResposta(array)
+    setArrayRenderizado(array)
     setRenderizado(array.toString().replaceAll(",", " "));
   }
 
   
   function verificarLetraSelecionada(letraClicado){
-    let novaArray =[...arrayResposta]
+    let novaArray =[...arrayRenderizado]
+
+    if(arrayResposta.includes(letraClicado)){
     for(let i=0; i<resposta.length; i++){
       if(letraClicado == resposta[i]){
         //novaArray[i] = `${letraClicado}`
@@ -58,9 +62,12 @@ function App() {
         console.log(novaArray)
       }
     }
-    setArrayResposta(novaArray)
+    setArrayRenderizado(novaArray)
     setRenderizado(novaArray.toString().replaceAll(",", " "));
-    
+  } else{ 
+    addErro() 
+  }
+
   }
 
   return (
