@@ -10,11 +10,8 @@ export default function Letras(props) {
       setLetra(letraClicado);
       verificarLetraSelecionada(letraClicado)
     }
-    
-    
   }
 
-  //${listaSelecionados.includes(alfabeto) ? "selecionado": ""}
 
   return (
     <ul>
