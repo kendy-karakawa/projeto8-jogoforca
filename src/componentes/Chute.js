@@ -1,16 +1,19 @@
 import { useState } from "react"
 
 export default function Chute(props){
-    const {resposta,setRenderizado, setErro,} = props
+    const {resposta,setRenderizado, setErro,setClasseAcertou} = props
     const [palavraChute, setPalavraChute] = useState("")
 
     function chutei(){
         let impute = palavraChute.toLowerCase()
         if (impute == resposta){
             setRenderizado(resposta)
+            setClasseAcertou("acertou")
         } else{
             setErro(6)
+            setRenderizado(resposta)
         }
+        setPalavraChute("")
     }
 
     return(

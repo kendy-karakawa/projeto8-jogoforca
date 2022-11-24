@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function Letras(props) {
   const {alfabeto, listaSelecionados,setListaSelecionados,letra,setLetra,verificarLetraSelecionada} = props
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function Jogo(props) {
-  const {img, palavras, resposta, setResposta, erro, renderizado, setRenderizado,sortearPalavras}= props
+  const {img, palavras, resposta, setResposta, erro, renderizado, setRenderizado,sortearPalavras,classeAcertou}= props
   
 
  
@@ -22,7 +22,7 @@ export default function Jogo(props) {
           Escolha a Palavra
         </button>
 
-        <div className="palavra" data-test="word" data-answer={resposta}>
+        <div className={`palavra ${classeAcertou}` }data-test="word" data-answer={resposta}>
           {renderizado}
         </div>
       </div>

@@ -21,13 +21,15 @@ function App() {
   const [renderizado, setRenderizado] = useState("");
   const [listaSelecionados, setListaSelecionados] = useState([]);
   const [letra, setLetra] = useState("");
-  const [arrayResposta,setArrayResposta] = useState([])
-  const [arrayRenderizado,setArrayRenderizado] = useState([])
-  console.log(arrayResposta)
+  const [arrayResposta, setArrayResposta] = useState([]);
+  const [arrayRenderizado, setArrayRenderizado] = useState([]);
+  const [classeAcertou, setClasseAcertou] = useState("");
+  console.log(arrayResposta);
 
   function addErro() {
-    if (erro == 6) {
+    if (erro == 5) {
       setErro(6);
+      setRenderizado(resposta)
     } else {
       setErro(erro + 1);
     }
@@ -37,37 +39,42 @@ function App() {
     let indice = Math.floor(Math.random() * palavras.length);
     setResposta(palavras[indice]);
     renderizar(palavras[indice]);
-    setArrayResposta(palavras[indice].split(''))
-    
+    setArrayResposta(palavras[indice].split(""));
   }
 
-  function renderizar(palavra) { 
-    let array = []
+  function renderizar(palavra) {
+    let array = [];
     for (let i = 0; i < palavra.length; i++) {
       array.push("_");
     }
-    setArrayRenderizado(array)
+    setArrayRenderizado(array);
     setRenderizado(array.toString().replaceAll(",", " "));
   }
 
-  
-  function verificarLetraSelecionada(letraClicado){
-    let novaArray =[...arrayRenderizado]
+  function verificarLetraSelecionada(letraClicado) {
+    let novaArray = [...arrayRenderizado];
 
-    if(arrayResposta.includes(letraClicado)){
-    for(let i=0; i<resposta.length; i++){
-      if(letraClicado == resposta[i]){
-        //novaArray[i] = `${letraClicado}`
-        novaArray.splice(i, 1, letraClicado)
-        console.log(novaArray)
+    if (arrayResposta.includes(letraClicado)) {
+      for (let i = 0; i < resposta.length; i++) {
+        if (letraClicado == resposta[i]) {
+          novaArray.splice(i, 1, letraClicado);
+          console.log(novaArray);
+        }
       }
+      setArrayRenderizado(novaArray);
+      setRenderizado(novaArray.toString().replaceAll(",", " "));
+    } else {
+      addErro();
     }
-    setArrayRenderizado(novaArray)
-    setRenderizado(novaArray.toString().replaceAll(",", " "));
-  } else{ 
-    addErro() 
+
+    acertouResposta(novaArray.toString().replaceAll(",", ""))
   }
 
+  function acertouResposta(array) {
+    if (array === resposta) {
+      setRenderizado(resposta);
+      setClasseAcertou("acertou");
+    }
   }
 
   return (
@@ -81,20 +88,21 @@ function App() {
         renderizado={renderizado}
         setRenderizado={setRenderizado}
         sortearPalavras={sortearPalavras}
+        classeAcertou={classeAcertou}
       />
-      <Letras 
-      alfabeto={alfabeto} 
-      listaSelecionados={listaSelecionados}
-      setListaSelecionados={setListaSelecionados}
-      letra={letra}
-      setLetra={setLetra}
-      verificarLetraSelecionada={verificarLetraSelecionada}
-
+      <Letras
+        alfabeto={alfabeto}
+        listaSelecionados={listaSelecionados}
+        setListaSelecionados={setListaSelecionados}
+        letra={letra}
+        setLetra={setLetra}
+        verificarLetraSelecionada={verificarLetraSelecionada}
       />
       <Chute
         resposta={resposta}
         setRenderizado={setRenderizado}
         setErro={setErro}
+        setClasseAcertou={setClasseAcertou}
       />
     </div>
   );
