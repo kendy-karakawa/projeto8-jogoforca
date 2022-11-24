@@ -12,7 +12,7 @@ export default function Chute(props){
     }
 
     return(
-        <div class="chute">
+        <div className="chute">
             <h6>Já sei a palavra!</h6>
             <input data-test="guess-input"></input>
             <button onClick={chutei} data-test="guess-button"><p>Chutar</p></button>

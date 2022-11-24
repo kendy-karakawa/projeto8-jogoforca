@@ -64,25 +64,24 @@ ul {
   margin-top: 50px;
 }
 
-ul li {
+.button {
   width: 80px;
   height: 80px;
   background-color: #9faab5;
   border: 1px solid #7aa7c7;
   border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-ul li span {
   font-family: "Roboto";
   font-style: bolder;
   font-size: 40px;
   text-align: center;
   color: #798a9f;
+  margin-top: 10px;
 }
+
+.selecionado{
+  background-color: #000000;
+}
+
 
 .chute {
   display: flex;

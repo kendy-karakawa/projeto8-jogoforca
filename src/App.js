@@ -19,6 +19,9 @@ function App() {
   const [resposta, setResposta] = useState("");
   const [erro, setErro] = useState(0);
   const [renderizado, setRenderizado] = useState("");
+  const [listaSelecionados, setListaSelecionados] = useState([]);
+  const [letra, setLetra] = useState("");
+  let arrayResposta = [];
 
   function addErro() {
     if (erro == 6) {
@@ -28,8 +31,31 @@ function App() {
     }
   }
 
+  function sortearPalavras() {
+    let indice = Math.floor(Math.random() * palavras.length);
+    setResposta(palavras[indice]);
+    renderizar(palavras[indice]);
+    
+  }
+
+  function renderizar(palavra) { 
+    for (let i = 0; i < palavra.length; i++) {
+      arrayResposta.push("_");
+    }
+    setRenderizado(arrayResposta.toString().replaceAll(",", " "));
+  }
+
+  function verificarLetraSelecionada(){
+    // for(let i=0; i<resposta.length; i++){
+    //   if(letra == resposta[i]){
+    //     arrayResposta[i] = letra
+    //   }
+    // }
+    // setRenderizado(arrayResposta.toString().replaceAll(",", " "));
+  }
+
   return (
-    <div class="container">
+    <div className="container">
       <Jogo
         img={imagens}
         palavras={palavras}
@@ -38,8 +64,17 @@ function App() {
         erro={erro}
         renderizado={renderizado}
         setRenderizado={setRenderizado}
+        sortearPalavras={sortearPalavras}
       />
-      <Letras alfabeto={alfabeto} />
+      <Letras 
+      alfabeto={alfabeto} 
+      listaSelecionados={listaSelecionados}
+      setListaSelecionados={setListaSelecionados}
+      letra={letra}
+      setLetra={setLetra}
+      verificarLetraSelecionada={verificarLetraSelecionada}
+
+      />
       <Chute
         resposta={resposta}
         setRenderizado={setRenderizado}

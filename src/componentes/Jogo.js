@@ -1,39 +1,28 @@
 import { useState } from "react";
 
 export default function Jogo(props) {
-  const {img, palavras, resposta, setResposta, erro, renderizado, setRenderizado}= props
+  const {img, palavras, resposta, setResposta, erro, renderizado, setRenderizado,sortearPalavras}= props
   
 
-  function sortearPalavras() {
-    let indice = Math.floor(Math.random() * palavras.length);
-    setResposta(palavras[indice]);
-    renderizar();
-    
-  }
+ 
 
-  function renderizar() {
-    let arrayResposta = [];
-    for (let i = 0; i < resposta.length; i++) {
-      arrayResposta.push("_");
-    }
-    setRenderizado(arrayResposta.toString().replaceAll(",", " "));
-  }
+  
 
   return (
-    <div class="jogo">
-      <div class="forca">
+    <div className="jogo">
+      <div className="forca">
         <img src={img[erro]} alt="" data-test="game-image"></img>
       </div>
-      <div class="direita">
+      <div className="direita">
         <button
-          class="escolha"
+          className="escolha"
           onClick={sortearPalavras}
           data-test="choose-word"
         >
           Escolha a Palavra
         </button>
 
-        <div class="palavra" data-test="word" data-answer={resposta}>
+        <div className="palavra" data-test="word" data-answer={resposta}>
           {renderizado}
         </div>
       </div>
