@@ -8,9 +8,10 @@ export default function Letras(props) {
     if (!listaSelecionados.includes(letraClicado)) {
       setListaSelecionados([...listaSelecionados, letraClicado]);
       setLetra(letraClicado);
+      verificarLetraSelecionada(letraClicado)
     }
     
-    verificarLetraSelecionada()
+    
   }
 
   //${listaSelecionados.includes(alfabeto) ? "selecionado": ""}

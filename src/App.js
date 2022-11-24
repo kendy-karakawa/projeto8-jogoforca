@@ -21,7 +21,8 @@ function App() {
   const [renderizado, setRenderizado] = useState("");
   const [listaSelecionados, setListaSelecionados] = useState([]);
   const [letra, setLetra] = useState("");
-  let arrayResposta = [];
+  const [arrayResposta,setArrayResposta] = useState([])
+  console.log(arrayResposta)
 
   function addErro() {
     if (erro == 6) {
@@ -39,19 +40,27 @@ function App() {
   }
 
   function renderizar(palavra) { 
+    let array = []
     for (let i = 0; i < palavra.length; i++) {
-      arrayResposta.push("_");
+      array.push("_");
     }
-    setRenderizado(arrayResposta.toString().replaceAll(",", " "));
+    setArrayResposta(array)
+    setRenderizado(array.toString().replaceAll(",", " "));
   }
 
-  function verificarLetraSelecionada(){
-    // for(let i=0; i<resposta.length; i++){
-    //   if(letra == resposta[i]){
-    //     arrayResposta[i] = letra
-    //   }
-    // }
-    // setRenderizado(arrayResposta.toString().replaceAll(",", " "));
+  
+  function verificarLetraSelecionada(letraClicado){
+    let novaArray =[...arrayResposta]
+    for(let i=0; i<resposta.length; i++){
+      if(letraClicado == resposta[i]){
+        //novaArray[i] = `${letraClicado}`
+        novaArray.splice(i, 1, letraClicado)
+        console.log(novaArray)
+      }
+    }
+    setArrayResposta(novaArray)
+    setRenderizado(novaArray.toString().replaceAll(",", " "));
+    
   }
 
   return (
