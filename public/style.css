@@ -70,19 +70,20 @@ ul {
 .button {
   width: 80px;
   height: 80px;
-  background-color: #9faab5;
+  background-color: #e1ecf4;
   border: 1px solid #7aa7c7;
   border-radius: 3px;
   font-family: "Roboto";
   font-style: bolder;
   font-size: 40px;
   text-align: center;
-  color: #798a9f;
+  color: #7aa7c7;
   margin-top: 10px;
 }
 
-.selecionado{
-  background-color: #000000;
+.button[type="text"]:disabled{
+  background-color: #9faab5;
+  color: #798a9f;
 }
 
 
@@ -110,6 +111,10 @@ ul {
   width: 360px;
   height: 40px;
   margin: 0 15px 0 15px;
+}
+
+.chute input[type="text"]:disabled{
+  
 }
 
 .chute button {

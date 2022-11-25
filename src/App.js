@@ -24,15 +24,27 @@ function App() {
   const [arrayResposta, setArrayResposta] = useState([]);
   const [arrayRenderizado, setArrayRenderizado] = useState([]);
   const [classeAcertou, setClasseAcertou] = useState("");
+  const [desativado, setDesativado] = useState(true);
   console.log(arrayResposta);
 
   function addErro() {
     if (erro == 5) {
-      setErro(6);
-      setRenderizado(resposta)
+      perdeu();
     } else {
       setErro(erro + 1);
     }
+  }
+
+  function perdeu() {
+    setErro(6);
+    setRenderizado(resposta);
+    setDesativado(true);
+  }
+
+  function ganhou() {
+    setRenderizado(resposta);
+    setClasseAcertou("acertou");
+    setDesativado(true);
   }
 
   function sortearPalavras() {
@@ -40,6 +52,8 @@ function App() {
     setResposta(palavras[indice]);
     renderizar(palavras[indice]);
     setArrayResposta(palavras[indice].split(""));
+    setDesativado(false);
+    setListaSelecionados([])
   }
 
   function renderizar(palavra) {
@@ -67,13 +81,12 @@ function App() {
       addErro();
     }
 
-    acertouResposta(novaArray.toString().replaceAll(",", ""))
+    acertouResposta(novaArray.toString().replaceAll(",", ""));
   }
 
   function acertouResposta(array) {
     if (array === resposta) {
-      setRenderizado(resposta);
-      setClasseAcertou("acertou");
+      ganhou();
     }
   }
 
@@ -81,12 +94,9 @@ function App() {
     <div className="container">
       <Jogo
         img={imagens}
-        palavras={palavras}
         resposta={resposta}
-        setResposta={setResposta}
         erro={erro}
         renderizado={renderizado}
-        setRenderizado={setRenderizado}
         sortearPalavras={sortearPalavras}
         classeAcertou={classeAcertou}
       />
@@ -94,15 +104,15 @@ function App() {
         alfabeto={alfabeto}
         listaSelecionados={listaSelecionados}
         setListaSelecionados={setListaSelecionados}
-        letra={letra}
         setLetra={setLetra}
         verificarLetraSelecionada={verificarLetraSelecionada}
+        desativado={desativado}
       />
       <Chute
         resposta={resposta}
-        setRenderizado={setRenderizado}
-        setErro={setErro}
-        setClasseAcertou={setClasseAcertou}
+        desativado={desativado}
+        perdeu={perdeu}
+        ganhou={ganhou}
       />
     </div>
   );
