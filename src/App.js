@@ -24,7 +24,7 @@ function App() {
   const [arrayRenderizado, setArrayRenderizado] = useState([]);
   const [classeAcertou, setClasseAcertou] = useState("");
   const [desativado, setDesativado] = useState(true);
-  console.log(arrayResposta);
+  
 
   function addErro() {
     if (erro >= 5) {
@@ -54,6 +54,7 @@ function App() {
     setDesativado(false);
     setListaSelecionados([])
     setErro(0)
+    setClasseAcertou("")
   }
 
   function renderizar(palavra) {
