@@ -1,13 +1,12 @@
 import { useState } from "react";
 
 export default function Letras(props) {
-  const {alfabeto, listaSelecionados,setListaSelecionados,setLetra,verificarLetraSelecionada,desativado} = props
+  const {alfabeto, listaSelecionados,setListaSelecionados,verificarLetraSelecionada,desativado} = props
 
 
   function clicou(letraClicado) {
     if (!listaSelecionados.includes(letraClicado)) {
       setListaSelecionados([...listaSelecionados, letraClicado]);
-      setLetra(letraClicado);
       verificarLetraSelecionada(letraClicado)
     }
     
@@ -19,8 +18,9 @@ export default function Letras(props) {
   return (
     <ul>
       {alfabeto.map((alfabeto) => (
-        <li data-test="letter" disabled={true} key={alfabeto}>
+        <li key={alfabeto}>
           <button
+            data-test="letter" 
             className={`button`}
             onClick={() => clicou(alfabeto)}
             type="text"

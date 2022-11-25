@@ -20,7 +20,6 @@ function App() {
   const [erro, setErro] = useState(0);
   const [renderizado, setRenderizado] = useState("");
   const [listaSelecionados, setListaSelecionados] = useState([]);
-  const [letra, setLetra] = useState("");
   const [arrayResposta, setArrayResposta] = useState([]);
   const [arrayRenderizado, setArrayRenderizado] = useState([]);
   const [classeAcertou, setClasseAcertou] = useState("");
@@ -28,7 +27,7 @@ function App() {
   console.log(arrayResposta);
 
   function addErro() {
-    if (erro == 5) {
+    if (erro >= 5) {
       perdeu();
     } else {
       setErro(erro + 1);
@@ -54,6 +53,7 @@ function App() {
     setArrayResposta(palavras[indice].split(""));
     setDesativado(false);
     setListaSelecionados([])
+    setErro(0)
   }
 
   function renderizar(palavra) {
@@ -104,7 +104,6 @@ function App() {
         alfabeto={alfabeto}
         listaSelecionados={listaSelecionados}
         setListaSelecionados={setListaSelecionados}
-        setLetra={setLetra}
         verificarLetraSelecionada={verificarLetraSelecionada}
         desativado={desativado}
       />
